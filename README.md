@@ -33,6 +33,7 @@ Welcome to the **Zenith Command Library** — the central place to find, manage,
 ```bash
 # Clone this repo
 [REDACTED]
+```
 
 # ⚠️ Important Notice
 **Using this bot to spam, raid, or violate Discord policies is strictly prohibited and can result in permanent bans.
