@@ -25,15 +25,18 @@
             </a>
         </header>
 
-        <!-- Background Controls -->
-        <div class="bg-controls rounded-xl p-4 mb-8 border border-purple-900/30">
-            <label class="block text-sm font-medium text-purple-200 mb-2">Fondo personalizado (URL de imagen)</label>
+
+
+        <!-- Command Search Controls -->
+            <div class="bg-controls rounded-xl p-4 mb-8 border border-purple-900/30">
+                <label class="block text-sm font-medium text-purple-200 mb-2">Search for commands</label>
             <div class="flex space-x-2">
-                <input type="text" id="bg-input" placeholder="https://ejemplo.com/imagen.jpg" 
-                        class="flex-1 bg-gray-800 border border-purple-900/50 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                <button onclick="changeBackground()" class="bg-purple-700 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition">Aplicar</button>
-                <button onclick="resetBackground()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg transition">Resetear</button>
-            </div>
+            <input type="text" id="search-input" placeholder="Ej: xhelp" 
+            class="flex-1 bg-gray-800 border border-purple-900/50 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+    <button onclick="searchCommand()" class="bg-purple-700 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition">Search</button>
+    <button onclick="resetSearch()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg transition">Reset</button>
+    </div>
+    <p id="search-error" class="text-red-400 mt-2 hidden">❌ Command not found.</p>
         </div>
 
         <!-- Commands Container -->
@@ -48,10 +51,10 @@
                     <div class="command-card p-6 relative">
                         <div class="flex justify-between items-start mb-3">
                             <h3 class="text-xl font-semibold text-purple-300">xhelp</h3>
-                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">general</span>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">support</span>
                         </div>
                         <p class="text-gray-300 mb-4">Shows an embed that indicates to you the terms of service, privacy and a list of the commands of the bot</p>
-                        <div class="text-xs text-purple-400/70 mt-auto">Use: <span class="prefix">xhelp [categoría]</span></div>
+                        <div class="text-xs text-purple-400/70 mt-auto">Use: <span class="prefix">xhelp</span></div>
                     </div>
                     
                     <!-- Command 2 -->
@@ -89,7 +92,7 @@
                             <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">dev</span>
                         </div>
                         <p class="text-gray-300 mb-4">Only for developers of the bot.</p>
-                        <div class="text-xs text-purple-400/70 mt-auto">Use: <span class="prefix">xdebug [código]</span></div>
+                        <div class="text-xs text-purple-400/70 mt-auto">Use: <span class="prefix">xdebug [code]</span></div>
                     </div>
                 </div>
             </div>
@@ -106,7 +109,7 @@
                             <h3 class="text-xl font-semibold text-purple-300">xdelete</h3>
                             <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">admin</span>
                         </div>
-                        <p class="text-gray-300 mb-4">Deletes the entire server (channel, vcs). Except community one</p>
+                        <p class="text-gray-300 mb-4">Deletes the entire server (channel, vcs). Except community ones. Disable manually to wipe out the server</p>
                         <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xdelete</span></div>
                     </div>
                     
@@ -132,7 +135,7 @@
             <div class="flex justify-center space-x-4 mt-4">
                 <a href="#" class="text-purple-400 hover:text-purple-300 transition">Terms of Service</a>
                 <span class="text-purple-700">•</span>
-                <a href="#" class="text-purple-400 hover:text-purple-300 transition">Privacy/a>
+                <a href="#" class="text-purple-400 hover:text-purple-300 transition">Privacy</a>
                 <span class="text-purple-700">•</span>
                 <a href="#" class="text-purple-400 hover:text-purple-300 transition">Support</a>
             </div>
@@ -140,20 +143,37 @@
     </div>
 
     <script>
-        // Background image control
-        function changeBackground() {
-            const bgUrl = document.getElementById('bg-input').value.trim();
-            if(bgUrl) {
-                document.body.style.setProperty('--bg-image', `url('${bgUrl}')`);
-                localStorage.setItem('zenith_bg', bgUrl);
-            }
+        // search
+            function searchCommand() {
+            const input = document.getElementById('search-input').value.trim().toLowerCase();
+            const cards = document.querySelectorAll('.command-card');
+        let found = false;
+
+        function resetSearch() {
+            const cards = document.querySelectorAll('.command-card');
+            cards.forEach(card => card.classList.remove('hidden'));
+            document.getElementById('search-error').classList.add('hidden');
+            document.getElementById('search-input').value = '';
         }
-        
-        function resetBackground() {
-            document.body.style.removeProperty('--bg-image');
-            document.getElementById('bg-input').value = '';
-            localStorage.removeItem('zenith_bg');
+
+
+        cards.forEach(card => {
+            const cmdName = card.querySelector('h3').innerText.trim().toLowerCase();
+        if (cmdName === input) {
+            card.classList.remove('hidden');
+            found = true;
+        } else {
+        card.classList.add('hidden');
         }
+    });
+
+    const errorMsg = document.getElementById('search-error');
+    if (found) {
+        errorMsg.classList.add('hidden');
+    } else {
+        errorMsg.classList.remove('hidden');
+    }
+    }
         
         // Load saved background
         document.addEventListener('DOMContentLoaded', function() {

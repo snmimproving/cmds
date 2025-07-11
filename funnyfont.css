@@ -6,20 +6,22 @@
             --accent: #a855f7;
             --dark: #111827;
             --light: #f3f4f6;
+            --bg-image: url('https://i.pinimg.com/736x/cd/7e/68/cd7e68bbb400c77ba25af89a81e65f35.jpg');
         }
-        
+
         body {
             font-family: 'JetBrains Mono', monospace;
             background: var(--dark);
             color: var(--light);
             min-height: 100vh;
-            background-image: var(--bg-image, none);
+            background-image: var(--bg-image);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             background-blend-mode: overlay;
             background-color: rgba(17, 24, 39, 0.85);
         }
+
         
         .header-font {
             font-family: 'Major Mono Display', monospace;
@@ -88,6 +90,10 @@
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
             background-size: 200% auto;
             animation: shine 3s linear infinite;
+        }
+
+        .hidden {
+            display: none !important;
         }
         
         @keyframes shine {
