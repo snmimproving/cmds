@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith - Comandos del Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="funnyfont.css">
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <h1 class="text-5xl font-bold mb-4 md:mb-0 header-font">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 glow-text">ZENITH</span>
+            </h1>
+            
+            <a href="https://github.com/snmimproving" target="_blank" rel="noopener noreferrer" class="github-btn">
+                <div class="flex items-center space-x-3 bg-gray-900 hover:bg-gray-800 px-6 py-3 rounded-xl border border-purple-900/50 transition-all">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.483 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48A10.019 10.019 0 0022 12.017C22 6.483 17.522 2 12 2z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="font-medium text-purple-300">Ver en GitHub</span>
+                </div>
+            </a>
+        </header>
+
+        <!-- Background Controls -->
+        <div class="bg-controls rounded-xl p-4 mb-8 border border-purple-900/30">
+            <label class="block text-sm font-medium text-purple-200 mb-2">Fondo personalizado (URL de imagen)</label>
+            <div class="flex space-x-2">
+                <input type="text" id="bg-input" placeholder="https://ejemplo.com/imagen.jpg" 
+                        class="flex-1 bg-gray-800 border border-purple-900/50 text-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                <button onclick="changeBackground()" class="bg-purple-700 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition">Aplicar</button>
+                <button onclick="resetBackground()" class="bg-gray-700 hover:bg-gray-600 text-gray-300 px-4 py-2 rounded-lg transition">Resetear</button>
+            </div>
+        </div>
+
+        <!-- Commands Container -->
+        <div class="space-y-12">
+            <!-- Category 1 -->
+            <div class="category-section">
+                <div class="category-title h-px w-full mt-1 mb-8 opacity-50"></div>
+                <h2 class="text-3xl font-bold text-center mb-8 header-font text-purple-400">COMANDOS PRINCIPALES</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Command 1 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xhelp</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">general</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Muestra todos los comandos disponibles del bot organizados por categorías.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xhelp [categoría]</span></div>
+                    </div>
+                    
+                    <!-- Command 2 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xinfo</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">general</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Muestra información sobre el bot, versión, desarrolladores y estadísticas.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xinfo</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="category-section">
+                <div class="category-title h-px w-full mt-1 mb-8 opacity-50"></div>
+                <h2 class="text-3xl font-bold text-center mb-8 header-font text-purple-400">DESARROLLADOR</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Command 1 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xstats</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">dev</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Muestra estadísticas avanzadas del bot para desarrolladores.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xstats</span></div>
+                    </div>
+                    
+                    <!-- Command 2 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xdebug</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">dev</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Activa el modo debug para diagnóstico de problemas.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xdebug [código]</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="category-section">
+                <div class="category-title h-px w-full mt-1 mb-8 opacity-50"></div>
+                <h2 class="text-3xl font-bold text-center mb-8 header-font text-purple-400">ZENITH POWERS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Command 1 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xdelete</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">admin</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Elimina una cantidad específica de mensajes en un canal.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xdelete [número]</span></div>
+                    </div>
+                    
+                    <!-- Command 2 -->
+                    <div class="command-card p-6 relative">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-purple-300">xban</h3>
+                            <span class="text-xs px-2 py-1 bg-purple-900/40 text-purple-200 rounded">mod</span>
+                        </div>
+                        <p class="text-gray-300 mb-4">Banea a un usuario del servidor con opción de especificar razón.</p>
+                        <div class="text-xs text-purple-400/70 mt-auto">Uso: <span class="prefix">xban @usuario [razón]</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-20 py-6 text-center footer">
+            <div class="text-purple-400/50 text-sm">
+                <p>Zenith Bot © 2023 - Todos los derechos reservados</p>
+                <p class="mt-1">Desarrollado con ♥ por el equipo Zenith</p>
+            </div>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-purple-400 hover:text-purple-300 transition">Términos</a>
+                <span class="text-purple-700">•</span>
+                <a href="#" class="text-purple-400 hover:text-purple-300 transition">Privacidad</a>
+                <span class="text-purple-700">•</span>
+                <a href="#" class="text-purple-400 hover:text-purple-300 transition">Soporte</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Background image control
+        function changeBackground() {
+            const bgUrl = document.getElementById('bg-input').value.trim();
+            if(bgUrl) {
+                document.body.style.setProperty('--bg-image', `url('${bgUrl}')`);
+                localStorage.setItem('zenith_bg', bgUrl);
+            }
+        }
+        
+        function resetBackground() {
+            document.body.style.removeProperty('--bg-image');
+            document.getElementById('bg-input').value = '';
+            localStorage.removeItem('zenith_bg');
+        }
+        
+        // Load saved background
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedBg = localStorage.getItem('zenith_bg');
+            if(savedBg) {
+                document.body.style.setProperty('--bg-image', `url('${savedBg}')`);
+                document.getElementById('bg-input').value = savedBg;
+            }
+            
+            // Add ripple effect to command cards
+            document.querySelectorAll('.command-card').forEach(card => {
+                card.addEventListener('mouseenter', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple-effect';
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 800);
+                });
+            });
+        });
+        
+        // Dynamic type effect for header
+        let i = 0;
+        const text = 'ZENITH';
+        const speed = 100;
+        const header = document.querySelector('h1 span');
+        
+        function typeWriter() {
+            if (i < text.length) {
+                header.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Start the typing effect
+        if(header) {
+            header.innerHTML = ''; // Clear the text
+            setTimeout(typeWriter, 1000);
+        }
+    </script>
+</body>
+</html>
